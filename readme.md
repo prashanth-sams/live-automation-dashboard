@@ -1,5 +1,5 @@
 # Live Automation Dashboard
-
+> A single dashboard to monitor live automation results
 ## Grafana
 
 ```
