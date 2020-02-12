@@ -1,10 +1,11 @@
 # Live Automation Dashboard
 > A single dashboard to monitor live automation results
 ## Grafana
-
 ```
 cd grafana/
 helm install --name grafana . --namespace=qa-dashboard
+
+helm3 install grafana . --namespace=qa-dashboard
 ```
 
 ### Node Port
@@ -18,6 +19,9 @@ kubectl get nodes --namespace qa-dashboard -o jsonpath="{.items[0].status.addres
 
 ### Access grafana service
 ```
+NODE_IP=$(kubectl get nodes --namespace qa-dashboard -o jsonpath="{.items[0].status.addresses[0].address}")
+NODE_PORT=$(kubectl get --namespace qa-dashboard -o jsonpath="{.spec.ports[0].nodePort}" services grafana)
+
 http://$NODE_IP:$NODE_PORT
 ```
 > username:
@@ -27,6 +31,12 @@ http://$NODE_IP:$NODE_PORT
 > password:
 ```
 kubectl get secret --namespace qa-dashboard grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+> Port forward Grafana
+```
+POD_NAME=$(kubectl get pods --namespace qa-dashboard | grep 'grafana' | awk '{print $1}')
+kubectl --namespace qa-dashboard port-forward $POD_NAME 3000
 ```
 
 ### Frequent commands:
@@ -42,6 +52,8 @@ helm del $(helm ls --all | grep 'DELETED' | awk '{print $1}') --purge
 ```
 cd prometheus/
 helm install --name prometheus . --namespace=qa-dashboard
+
+helm3 install prometheus . --namespace=qa-dashboard
 ```
 
 ### Prometheus server

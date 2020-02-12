@@ -17,7 +17,7 @@ metadata:
 {{- end }}
 spec:
 {{- if (or (eq .Values.service.type "ClusterIP") (empty .Values.service.type)) }}
-  type: ClusterIP
+  type: NodePort
   {{- if .Values.service.clusterIP }}
   clusterIP: {{ .Values.service.clusterIP }}
   {{end}}

@@ -3,3 +3,4 @@
 trash/
 temp/
 **/*.tgz
+prometheus_old/

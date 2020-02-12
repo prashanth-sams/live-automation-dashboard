@@ -14,9 +14,9 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  clusterIP: None
+  clusterIP: ""
   selector:
     app: {{ template "grafana.name" . }}
     release: {{ .Release.Name }}
-  type: ClusterIP
+  type: NodePort
 {{- end }}
