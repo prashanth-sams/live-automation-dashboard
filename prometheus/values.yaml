@@ -709,6 +709,7 @@ server:
     ## Prometheus server Ingress annotations
     ##
     annotations: {}
+    # annotations:
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
@@ -720,15 +721,16 @@ server:
     ## Must be provided if Ingress is enabled
     ##
     hosts: []
-    #   - prometheus.domain.com
+    # hosts:
+    #   - prom.localhost
     #   - domain.com/prometheus
 
     ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
     extraPaths: []
-    # - path: /*
+    # - path: /prometheus
     #   backend:
-    #     serviceName: ssl-redirect
-    #     servicePort: use-annotation
+    #     serviceName: dashboard-prometheus-server
+    #     servicePort: 9090
 
     ## Prometheus server Ingress TLS configuration
     ## Secrets must be manually created in the namespace
@@ -926,8 +928,9 @@ server:
 
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
-    servicePort: 80
+    servicePort: 9090
     sessionAffinity: None
+    # nodePort: 30000
     type: ClusterIP
 
     ## If using a statefulSet (statefulSet.enabled=true), configure the
@@ -983,6 +986,7 @@ pushgateway:
     ## pushgateway Ingress annotations
     ##
     annotations: {}
+    # annotations:
     #   kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
@@ -990,15 +994,16 @@ pushgateway:
     ## Must be provided if Ingress is enabled
     ##
     hosts: []
-    #   - pushgateway.domain.com
+    # hosts:
+    #   - push.localhost
     #   - domain.com/pushgateway
 
     ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
     extraPaths: []
-    # - path: /*
-    #   backend:
-    #     serviceName: ssl-redirect
-    #     servicePort: use-annotation
+      # - path: /
+      #   backend:
+      #     serviceName: dashboard-prometheus-pushgateway
+      #     servicePort: 9091
 
     ## pushgateway Ingress TLS configuration
     ## Secrets must be manually created in the namespace
