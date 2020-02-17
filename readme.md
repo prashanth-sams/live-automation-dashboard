@@ -3,9 +3,9 @@
 ## **Grafana**
 ```
 cd grafana/
-helm install --name grafana . --namespace monitoring --set rbac.create=false
+helm install --name grafana . --namespace monitoring
 
-helm3 install grafana . -n monitoring --set rbac.create=false
+helm3 install grafana . -n monitoring
 ```
 
 #### Access grafana service
@@ -27,9 +27,9 @@ Grafana access URL: http://localhost:3030/
 ## **Prometheus**
 ```
 cd prometheus/
-helm install --name prometheus . --namespace monitoring --set rbac.create=false
+helm install --name prometheus . --namespace monitoring
 
-helm3 install dashboard . -n monitoring --set rbac.create=false
+helm3 install dashboard . -n monitoring
 ```
 
 #### Port forward Prometheus server
