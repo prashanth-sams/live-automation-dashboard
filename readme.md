@@ -1,5 +1,12 @@
 # Live Automation Dashboard
-> A single dashboard to monitor live automation results
+> A single dashboard to monitor live automation results as a time series using Prometheus & Grafana
+
+![Dashboard](https://i.imgur.com/aDhMz5j.png)
+
+Create namespace; say, `monitoring`
+```
+kubectl create namespace monitoring
+```
 ## **Grafana**
 ```
 cd grafana/
